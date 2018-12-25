@@ -19,7 +19,7 @@ export function activate(context: vscode.ExtensionContext) {
 	let disposable = vscode.commands.registerCommand('extension.tornadoStarter', () => {
 		// The code you place here will be executed every time your command is executed
 
-		// Display a message box to the user
+		// Create a tornado application or show error message
 		let options: vscode.InputBoxOptions = {
 			prompt: "Please input the project name",
 			placeHolder: "app-starter"
@@ -30,13 +30,22 @@ export function activate(context: vscode.ExtensionContext) {
 				vscode.window.showErrorMessage(message);
 				return;
 			}
-			let fullPath = __dirname;
-			let filename = path.basename(fullPath);
-			console.log('The full path: ' + fullPath);
-			console.log('The file name: ' + filename);
 			console.log('Input project name: ' + value);
-			let app = new AppFactory(value);
-			app.createFile();
+
+			let folderName = vscode.workspace.name || undefined;
+			let root = vscode.workspace.rootPath || undefined;
+			console.log("Current folder name: " + folderName);
+			console.log("Current folder path: " + root);
+			let appPath = path.join(root, value) || undefined;
+			let app = new AppFactory(appPath);
+			let result = app.createApp();
+			if (result) {
+				let message = "Success create project: " + value;
+				vscode.window.showInformationMessage(message);
+			} else {
+				let message = "Fail to create the project: " + value;
+				vscode.window.showErrorMessage(message);
+			}
 		});
 	});
 

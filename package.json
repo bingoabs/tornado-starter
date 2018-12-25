@@ -36,6 +36,7 @@
 		"@types/mocha": "^2.2.42"
 	},
 	"dependencies": {
+		"ncp": "^2.0.0",
 		"path": "^0.12.7"
 	}
 }
