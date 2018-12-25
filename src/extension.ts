@@ -24,10 +24,10 @@ export function activate(context: vscode.ExtensionContext) {
 		vscode.window.showInputBox(options).then(value => {
 			if (!value) {
 				let message = 'Project name is required';
-				vscode.window.showInformationMessage(message);
-				return
+				vscode.window.showErrorMessage(message);
+				return;
 			}
-			console.error('Input project name: ' + value);
+			console.log('Input project name: ' + value);
 		})
 	});
 
