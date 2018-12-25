@@ -5,7 +5,7 @@ export class AppFactory {
         this.name = name;
     }
     createFile(){
-        this.fs.writeFile("test_starter.txt", 'I am cool haha', function(err) {
+        this.fs.writeFile("/Users/bingokarl/test_starter.txt", 'I am cool haha', function(err) {
             if (err) {
                 console.error(err);
                 return false;
