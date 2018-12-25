@@ -2,7 +2,7 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 import * as path from 'path';
-import { appFactory } from './app/app';
+import { AppFactory } from './app/app';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -20,23 +20,23 @@ export function activate(context: vscode.ExtensionContext) {
 
 		// Display a message box to the user
 		let options: vscode.InputBoxOptions = {
-			prompt?: "Please input the project name",
-			placeHolder ?: "app-starter"
-		}
+			prompt: "Please input the project name",
+			placeHolder: "app-starter"
+		};
 		vscode.window.showInputBox(options).then(value => {
 			if (!value) {
 				let message = 'Project name is required';
 				vscode.window.showErrorMessage(message);
 				return;
 			}
-			let fullPath = vscode.window.activeTextEditor.document.fileName;
-			let filename = path.basename(filePath);
+			let fullPath = __dirname;
+			let filename = path.basename(fullPath);
 			console.log('The full path: ' + fullPath);
 			console.log('The file name: ' + filename);
 			console.log('Input project name: ' + value);
-			var app = new appFactory(value);
+			var app = new AppFactory(value);
 			app.createFile();
-		})
+		});
 	});
 
 	context.subscriptions.push(disposable);

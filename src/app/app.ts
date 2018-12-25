@@ -1,6 +1,7 @@
-export class appFactory {
+export class AppFactory {
     private fs = require('fs');
-    constructor(name:string) {
+    name: string;
+    constructor(name: string) {
         this.name = name;
     }
     createFile(){
