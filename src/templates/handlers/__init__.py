@@ -9,35 +9,36 @@ from models import users
 class BaseHandler(RequestHandler):
     def prepare(self):
         super(BaseHandler, self).prepare()
+        logging.info(self.current_user)
         if self.current_user:
-            logging.info("No found username")
+            logging.info("Current username exists")
+        else:
+            logging.info("Current username not found")
             path = self.request.path
             self.redirect("/login?origin={}".format(path))
             raise Finish
-        else:
-            logging.info("Current username exists")
 
     def get_current_user(self):
         name = self.get_secure_cookie("name", None)
+        logging.info("Current cookie: {}".format(name))
         if sessions.find_one(name):
             return users.find_one(name)
         else:
             return None
 
-class LoginHandler(BaseHandler):
+class LoginHandler(RequestHandler):
     def get(self):
-        user = self.get_argument("name", None)
-        pwd = self.get_argument("pwd", None)
-        origin = self.get_argument("origin", "/index")
-        if not user:
-            self.write("user name error")
-        elif not pwd:
-            self.write("pwd error")
-        elif users.insert(user, pwd):
-            self.write("insert error")
-        elif origin:
-            self.set_secure_cookie("name", user)
+        name = self.get_query_argument("name", None)
+        pwd = self.get_query_argument("pwd", None)
+        if None in [name, pwd]:
+            self.write("name or pwd error")
+            return
+        self.set_secure_cookie("name", name)
+        users.insert(name, pwd)
+        sessions.insert(name)
+
+        origin = self.get_query_argument("origin", "/index")
+        if origin:
             self.redirect(origin)
         else:
-            self.set_secure_cookie("name", user)
             self.write("insert success and response")
