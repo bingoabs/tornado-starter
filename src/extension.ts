@@ -17,8 +17,18 @@ export function activate(context: vscode.ExtensionContext) {
 		// The code you place here will be executed every time your command is executed
 
 		// Display a message box to the user
-		vscode.window.showInformationMessage('Tornado start to create files!');
-		
+		let options: vscode.InputBoxOptions = {
+			prompt?: "Please input the project name",
+			placeHolder ?: "app-starter"
+		}
+		vscode.window.showInputBox(options).then(value => {
+			if (!value) {
+				let message = 'Project name is required';
+				vscode.window.showInformationMessage(message);
+				return
+			}
+			console.error('Input project name: ' + value);
+		})
 	});
 
 	context.subscriptions.push(disposable);
