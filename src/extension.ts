@@ -1,6 +1,8 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
+import * as path from 'path';
+import { appFactory } from './app/app';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -27,7 +29,13 @@ export function activate(context: vscode.ExtensionContext) {
 				vscode.window.showErrorMessage(message);
 				return;
 			}
+			let fullPath = vscode.window.activeTextEditor.document.fileName;
+			let filename = path.basename(filePath);
+			console.log('The full path: ' + fullPath);
+			console.log('The file name: ' + filename);
 			console.log('Input project name: ' + value);
+			var app = new appFactory(value);
+			app.createFile();
 		})
 	});
 
