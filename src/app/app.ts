@@ -6,7 +6,7 @@ export class AppFactory {
     }
     createApp(){
         this.ncp.limit = 16;
-        let result = this.ncp("./tornado-starter/src/templates", this.appPath, function(err) {
+        let result = this.ncp("./tornado-starter/src/templates", this.appPath, function(err: any) {
             if (err){
                 console.error(err);
             }

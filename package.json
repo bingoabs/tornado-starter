@@ -2,6 +2,8 @@
 	"name": "tornado-starter",
 	"displayName": "tornado-starter",
 	"description": "quickly create a app for tornado with mongodb as database",
+	"author": "Zhou",
+	"publisher": "bingoabs27",
 	"version": "0.0.1",
 	"engines": {
 		"vscode": "^1.30.0"
@@ -37,6 +39,7 @@
 	},
 	"dependencies": {
 		"ncp": "^2.0.0",
-		"path": "^0.12.7"
+		"path": "^0.12.7",
+		"vsce": "^1.54.0"
 	}
 }

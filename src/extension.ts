@@ -33,10 +33,10 @@ export function activate(context: vscode.ExtensionContext) {
 			console.log('Input project name: ' + value);
 
 			let folderName = vscode.workspace.name || undefined;
-			let root = vscode.workspace.rootPath || undefined;
+			let root = vscode.workspace.rootPath || "/Users/bingokarl/project";
 			console.log("Current folder name: " + folderName);
 			console.log("Current folder path: " + root);
-			let appPath = path.join(root, value) || undefined;
+			let appPath = path.join(root, value) || "/Users/bingokarl/project/tornado_starter_example";
 			let app = new AppFactory(appPath);
 			let result = app.createApp();
 			if (result) {
