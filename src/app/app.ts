@@ -7,7 +7,7 @@ export class AppFactory {
     createApp(){
         this.ncp.limit = 16;
         //  TODO: make the static file packaged into the release
-        let template_path = "/Users/bingokarl/project/tornado-starter/src/templates"
+        let template_path = "/Users/bingokarl/project/tornado-starter/src/templates";
         let result = this.ncp(template_path, this.appPath, function(err: any) {
             if (err){
                 console.error(err);
