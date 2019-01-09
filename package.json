@@ -4,7 +4,7 @@
 	"description": "quickly create a app for tornado with mongodb as database",
 	"author": "Zhou",
 	"publisher": "bingoabs27",
-	"version": "0.0.1",
+	"version": "0.1.1",
 	"engines": {
 		"vscode": "^1.30.0"
 	},
