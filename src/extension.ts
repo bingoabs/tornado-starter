@@ -39,13 +39,9 @@ export function activate(context: vscode.ExtensionContext) {
 			let appPath = path.join(root, value) || "/Users/bingokarl/project/tornado_starter_example";
 			let app = new AppFactory(appPath);
 			let result = app.createApp();
-			if (result) {
-				let message = "Success create project: " + value;
-				vscode.window.showInformationMessage(message);
-			} else {
-				let message = "Fail to create the project: " + value;
-				vscode.window.showErrorMessage(message);
-			}
+			console.log("create starter result:" + result);
+			let message = "Success create project: " + value;
+			vscode.window.showInformationMessage(message);
 		});
 	});
 
